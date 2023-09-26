@@ -30,9 +30,9 @@ class Router
      * @param $url the url path
      * @param $handler the function to execute on the route
      */
-    public function get($url, $handler, array $allowed)
+    public function get($url, $handler)
     {
-        $this->addRoute($url, $allowed, $handler, "GET");
+        $this->addRoute($url,  $handler, "GET");
     }
 
     /**
@@ -45,9 +45,9 @@ class Router
      * @param $url the url path
      * @param $handler the function to execute on the route
      */
-    public function post($url, $handler, array $allowed)
+    public function post($url, $handler)
     {
-        $this->addRoute($url, $allowed, $handler, "POST");
+        $this->addRoute($url,  $handler, "POST");
     }
 
     /**
@@ -60,9 +60,9 @@ class Router
      * @param $url the url path
      * @param $handler the function to execute on the route
      */
-    public function put($url, $handler, array $allowed)
+    public function put($url, $handler)
     {
-        $this->addRoute($url, $allowed, $handler, "PUT");
+        $this->addRoute($url, $handler, "PUT");
     }
 
     /**
@@ -75,9 +75,9 @@ class Router
      * @param $url the url path
      * @param $handler the function to execute on the route
      */
-    public function delete($url, $handler, array $allowed)
+    public function delete($url, $handler)
     {
-        $this->addRoute($url, $allowed, $handler, "DELETE");
+        $this->addRoute($url, $handler, "DELETE");
     }
 
     /**
@@ -87,9 +87,9 @@ class Router
      * @param $handler the function to execute on the route
      * @param $methode Http methode default = GET
      */
-    private function addRoute(string $url, array $allowed, array $handler, string $method = "GET")
+    private function addRoute(string $url, array $handler, string $method = "GET")
     {
-        $this->routes[] = array('url' => $url, 'handler' => $handler, 'method' => $method, 'allowed' => $allowed);
+        $this->routes[] = array('url' => $url, 'handler' => $handler, 'method' => $method);
     }
 
     /**
@@ -117,11 +117,6 @@ class Router
             // Check if the $route match the URI and if the request method is the same of the route method
             // preg_match => check if the route match the URI  and extract argument
             if (preg_match($pattern, $request_url, $matches) && $route['method'] === $_SERVER["REQUEST_METHOD"]) {
-
-                if (isset($route['allowed']) && !in_array($role, $route['allowed'], true)) {
-                    $this->handle401();
-                    return;
-                }
 
                 // Remove the full text matched
                 array_shift($matches);
