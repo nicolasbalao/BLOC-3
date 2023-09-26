@@ -1,8 +1,9 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
 
+use App\Controllers\AuthController;
 use App\Routes\Router;
 
 /**
@@ -24,6 +25,11 @@ require_once "../App/Autoloader.php";
 
 // ------------------ ROUTING ------------------//
 $router = new Router();
+
+$router->get("/login", [AuthController::class, "loginPage"]);
+$router->post("/login", [AuthController::class, "login"]);
+$router->get("/register", [AuthController::class, "registerPage"]);
+$router->post("/register", [AuthController::class, "register"]);
 
 
 
