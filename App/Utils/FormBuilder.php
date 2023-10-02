@@ -51,9 +51,9 @@ class FormBuilder
 
         foreach ($attributs as $attribut => $value) {
             if (in_array($attribut, $shortAttributs) && $value == true) {
-                $str .= "$attribut";
+                $str .= "$attribut ";
             } else {
-                $str .= "$attribut='$value'";
+                $str .= "$attribut='$value' ";
             }
         }
         return $str;

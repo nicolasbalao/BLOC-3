@@ -35,6 +35,10 @@ $router->post("/register", [AuthController::class, "register"]);
 
 // HOMEPAGE
 $router->get("/", [HomePageController::class, "index"]);
+$router->post("/", [HomePageController::class, "create"]);
+$router->post("/{id}", [HomePageController::class, "update"]);
+$router->delete("/{id}", [HomePageController::class, "delete"]);
+
 
 
 
