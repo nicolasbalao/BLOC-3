@@ -13,6 +13,7 @@ abstract class Controller
 
     // Template where we render the "component"
     public $template = "default";
+    public $cssFile = "style";
 
     /**
      * render component in the default template page
@@ -23,8 +24,11 @@ abstract class Controller
     public function render(string $file, array $data = [])
     {
 
+        $cssLink = "/css/" . $this->cssFile . '.css';
+
         // Extract data
         extract($data);
+
 
         // Start output stream
         ob_start();
