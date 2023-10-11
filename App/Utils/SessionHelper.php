@@ -56,4 +56,9 @@ class SessionHelper
         }
         return null;
     }
+
+    public static function destroy()
+    {
+        session_destroy();
+    }
 }

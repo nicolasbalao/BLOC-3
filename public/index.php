@@ -3,6 +3,7 @@
 //     session_start();
 // }
 
+use App\Autloader;
 use App\Controllers\AuthController;
 use App\Controllers\HomePageController;
 use App\Routes\Router;
@@ -33,6 +34,7 @@ $router->get("/login", [AuthController::class, "loginPage"]);
 $router->post("/login", [AuthController::class, "login"]);
 $router->get("/register", [AuthController::class, "registerPage"]);
 $router->post("/register", [AuthController::class, "register"]);
+$router->get('/logout', [AuthController::class, "logout"]);
 
 // HOMEPAGE
 $router->get("/", [HomePageController::class, "index"]);

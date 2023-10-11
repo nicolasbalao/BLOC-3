@@ -8,6 +8,10 @@ use App\Utils\SessionHelper;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->cssFile = "auth";
+    }
 
     public function loginPage()
     {
@@ -61,8 +65,13 @@ class AuthController extends Controller
 
         $user->setSession();
         SessionHelper::setSuccessMessage("Succes");
-        header("Location: /home");
+        header("Location: /");
         // exit();
+    }
+
+    public function logout()
+    {
+        SessionHelper::destroy();
     }
 
     public function register()
@@ -109,7 +118,7 @@ class AuthController extends Controller
     private function generateForm(string $buttonTitle)
     {
         $form = new FormBuilder;
-        $form->startForm()
+        $form->startForm(["class" => "test"])
             ->addLabelFor("email", "Email")
             ->addInput("email", "email")
             ->addLabelFor("password", "Password")
