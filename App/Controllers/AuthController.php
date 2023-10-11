@@ -18,7 +18,7 @@ class AuthController extends Controller
         $title = "login";
 
         $form = $this->generateForm("Sign in");
-        $this->render("auth", ["title" => $title, "form" => $form->generate()]);
+        $this->render("auth", ["title" => $title, "form" => $form->generate(), "formTitle" => "login"]);
     }
 
     public function registerPage()
@@ -26,7 +26,7 @@ class AuthController extends Controller
         $title = "register";
 
         $form = $this->generateForm("Sign up");
-        $this->render("auth", ["title" => $title, "form" => $form->generate()]);
+        $this->render("auth", ["title" => $title, "form" => $form->generate(), "formTitle" => "register"]);
     }
 
     public function login()
