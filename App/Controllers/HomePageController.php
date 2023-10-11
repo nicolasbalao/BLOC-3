@@ -11,6 +11,15 @@ class HomePageController extends Controller
 {
 
 
+    public function __construct()
+    {
+        // TODO: REFACTOR: search something like nest js UseGuard()
+        if (!SessionHelper::isAuth()) {
+            header("Location: /login");
+        }
+        $this->cssFile = "homePage";
+    }
+
     public function index()
     {
         $title = "Home page";
@@ -28,21 +37,34 @@ class HomePageController extends Controller
 
     public function create()
     {
-        if (!isset($_POST)) {
+        // Retrieve the raw POST data
+        $post_data = file_get_contents("php://input");
+
+        // Decode the JSON data
+        $json_data = json_decode($post_data, true);
+
+        if (!$json_data) {
+            SessionHelper::setError("Invalid JSON data provided");
+            http_response_code(400);
+            $this->index();
+            exit;
+        }
+
+        if (!isset($json_data)) {
             SessionHelper::setError("No data provided");
             http_response_code(400);
             $this->index();
             exit;
         }
 
-        if (!FormBuilder::validate($_POST, ["name"])) {
+        if (!FormBuilder::validate($json_data, ["name"])) {
             SessionHelper::setError("Bad data provided");
             http_response_code(400);
             $this->index();
             exit;
         }
 
-        $name = strip_tags($_POST['name']);
+        $name = strip_tags($json_data['name']);
 
         $task = new TaskModel;
 
@@ -61,7 +83,12 @@ class HomePageController extends Controller
 
     public function update($id)
     {
-        if (!isset($_POST)) {
+        $put_data = file_get_contents("php://input");
+
+        // Decode the JSON data
+        $json_data = json_decode($put_data, true);
+
+        if (!isset($json_data)) {
             SessionHelper::setError("No data provided");
             http_response_code(400);
             $this->index();
@@ -70,17 +97,14 @@ class HomePageController extends Controller
 
         $task = new TaskModel;
 
-        $name = strip_tags($_POST['name']);
+        $name = strip_tags($json_data['name']);
         $task->setName($name);
 
-        $done =  false;
-
-        if (isset($_POST["done"])) {
-            $done = strip_tags($_POST["done"]);
-        }
+        $done =  $done = isset($json_data["done"]) ? 1 : 0;
         $task->setDone($done);
 
         $success = $task->update($id);
+
 
         if (!$success) {
             $this->handleErrorBehviour("An error occured", 500);

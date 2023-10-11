@@ -6,7 +6,8 @@ class TaskModel extends Model
 {
     protected int $id;
     protected string $name;
-    protected bool $done;
+    // TODO: refactor done behaviour with the DB (set it to a boolean)
+    protected int $done;
 
     public function __construct()
     {
@@ -33,12 +34,12 @@ class TaskModel extends Model
         $this->name = $name;
     }
 
-    public function getDone()
+    public function getDone(): bool
     {
         return $this->done;
     }
 
-    public function setDone(string $done)
+    public function setDone(int $done)
     {
         $this->done = $done;
     }

@@ -34,6 +34,8 @@ class Model extends Db
         if ($attributes !== null) {
             // Prepare request
             $query = $this->db->prepare($sql);
+            var_dump($query);
+            var_dump($attributes);
             $query->execute($attributes);
             return $query;
         } else {

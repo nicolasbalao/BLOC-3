@@ -1,0 +1,28 @@
+.task_container{
+    /* TODO: fix with px */
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 0.5rem;
+    
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.right_content{
+    display: flex;
+    align-items: center;
+    gap: 1rem
+}
+
+.button-add{
+}

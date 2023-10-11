@@ -6,6 +6,7 @@
 use App\Controllers\AuthController;
 use App\Controllers\HomePageController;
 use App\Routes\Router;
+use App\Utils\SessionHelper;
 
 /**
  * Import namespace
@@ -36,7 +37,7 @@ $router->post("/register", [AuthController::class, "register"]);
 // HOMEPAGE
 $router->get("/", [HomePageController::class, "index"]);
 $router->post("/", [HomePageController::class, "create"]);
-$router->post("/{id}", [HomePageController::class, "update"]);
+$router->put("/{id}", [HomePageController::class, "update"]);
 $router->delete("/{id}", [HomePageController::class, "delete"]);
 
 

@@ -40,6 +40,12 @@ class SessionHelper
         return null;
     }
 
+    public static function isAuth()
+    {
+        self::start();
+        return isset($_SESSION['user']);
+    }
+
     public static function getError()
     {
         self::start();
