@@ -1,15 +1,18 @@
 .auth_section {
-  padding: 1.4rem;
+  padding: 3rem;
   border-radius: 10px;
   font-weight: bold;
 
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  font-size: 1.5rem;
 }
 
 .form_title {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
+  font-size: 2.5rem;
 }
 
 .auth_form {
@@ -19,5 +22,5 @@
 }
 
 input {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
