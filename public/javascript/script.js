@@ -20,7 +20,7 @@ addTaskButton.addEventListener("click", (e) => {
   handleTasksChange();
 });
 
-// FUNCTION
+// FUNCTIONS
 
 const createTaskElement = () => {
   const newTask = document.createElement("div");
@@ -58,8 +58,6 @@ const handleTasksChange = () => {
     const taskDone = task.children[1].children[0].children[0];
     const deleteButton = task.children[1].children[1].children[0];
 
-    console.log("delete button", deleteButton);
-
     taskName.addEventListener("blur", () => {
       let payload = {
         id: taskId.textContent.trim() !== "" ? taskId.textContent.trim() : null,
@@ -74,7 +72,7 @@ const handleTasksChange = () => {
         name: taskName.textContent.trim(),
         done: taskDone.checked,
       };
-      console.log(payload);
+      task.classList.toggle("done");
       handleSavingTask(payload);
     });
 
@@ -88,13 +86,12 @@ const handleTasksChange = () => {
 
 const handleSavingTask = (task) => {
   if (!task.id) {
-    console.log("create");
     createTask(task);
   } else {
-    console.log("update");
     updateTask(task);
   }
 };
+
 const createTask = async (task) => {
   const options = {
     method: "POST",
@@ -104,12 +101,21 @@ const createTask = async (task) => {
     body: JSON.stringify(task),
   };
 
-  const rep = await fetch("/", options);
+  try {
+    const response = await fetch("/", options);
+    console.log(response);
 
-  console.log(rep);
+    if (!response.ok) {
+      // Check for error status and throw an error
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    console.log("Task created successfully:");
+  } catch (error) {
+    // Handle errors here
+    console.error("Error creating task:", error.message);
+  }
 };
 const updateTask = async (task) => {
-  console.log(task);
   const options = {
     method: "PUT",
     headers: {
@@ -118,9 +124,17 @@ const updateTask = async (task) => {
     body: JSON.stringify(task),
   };
 
-  const rep = await fetch(`/${task.id}`, options);
+  try {
+    const response = await fetch(`/${task.id}`, options);
 
-  console.log(rep);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Task updated successfully !");
+  } catch (err) {
+    console.error("Error updating task: ", err.message);
+  }
 };
 
 const deleteTask = async (taskId) => {
@@ -131,7 +145,19 @@ const deleteTask = async (taskId) => {
     },
   };
 
-  const rep = await fetch(`/${taskId}`, options);
+  try {
+    const response = await fetch(`/${taskId}`, options);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Task deleted successfully !");
+
+    window.location.href = "/";
+  } catch (err) {
+    console.log("Error deleting task: ", err);
+  }
 };
 
 handleTasksChange();

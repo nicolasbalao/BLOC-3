@@ -51,3 +51,7 @@
   text-decoration: line-through;
   opacity: 0.6;
 }
+
+.task_delete:hover{
+  cursor: pointer;
+}

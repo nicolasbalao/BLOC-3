@@ -100,8 +100,10 @@ class HomePageController extends Controller
         $name = strip_tags($json_data['name']);
         $task->setName($name);
 
-        $done =  $done = isset($json_data["done"]) ? 1 : 0;
+        $done =  $done = isset($json_data["done"]) && $json_data["done"] ? 1 : 0;
         $task->setDone($done);
+
+        var_dump($task);
 
         $success = $task->update($id);
 

@@ -2,7 +2,7 @@
     <h1 class="title">Tasks</h1>
     <div class="task_container" id="task_container">
         <?php foreach ($tasks as $task) : ?>
-            <div class="task done">
+            <div class="task <?php echo $task->done ? 'done' : '' ?>">
                 <div>
                     <div class="hidden" id="task_id"><?= $task->id ?></div>
                     <p class="task__name" contenteditable><?= $task->name ?></p>
