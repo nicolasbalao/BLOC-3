@@ -118,7 +118,7 @@ class AuthController extends Controller
     private function generateForm(string $buttonTitle)
     {
         $form = new FormBuilder;
-        $form->startForm(["class" => "test"])
+        $form->startForm(["class" => "auth_form"])
             ->addLabelFor("email", "Email")
             ->addInput("email", "email")
             ->addLabelFor("password", "Password")
