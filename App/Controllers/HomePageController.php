@@ -147,7 +147,7 @@ class HomePageController extends Controller
         $form->startForm()
             ->addLabelFor("name", "Name")
             ->addInput("name", "name", ["required" => true])
-            ->addButton("Save", ["onclick" => "test()"])
+            ->addButton("Save")
             ->endForm();
 
         return $form->generate();
