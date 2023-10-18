@@ -64,7 +64,7 @@ class AuthController extends Controller
         }
 
         $user->setSession();
-        SessionHelper::setSuccessMessage("Succes");
+        SessionHelper::setSuccessMessage("Logged !");
         header("Location: /");
         // exit();
     }

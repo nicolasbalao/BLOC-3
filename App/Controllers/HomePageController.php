@@ -126,6 +126,8 @@ class HomePageController extends Controller
             $this->handleErrorBehviour("An Error occured while deleting", 500);
         }
 
+        SessionHelper::setSuccessMessage("Tasks deleted !");
+
         $this->index();
         exit;
     }
