@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    <!-- Header and other common elements go here -->
 
     <!-- Content placeholder -->
     <main class="content_container">
@@ -23,6 +22,31 @@
     </main>
 
     <!-- Footer and other common elements go here -->
+    <div class="toast_container">
+
+        <?php
+
+        use App\Utils\SessionHelper;
+
+        $succesMessage = SessionHelper::getSuccessMessage();
+        $errorMessages = SessionHelper::getError();
+
+
+        if ($succesMessage) : ?>
+            <div class="toast succes">
+                <?= $succesMessage ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($errorMessages) : ?>
+            <div class="toast error">
+                <?= $errorMessages ?>
+            </div>
+        <?php endif ?>
+    </div>
+
+
+
 </body>
 
 </html>

@@ -12,7 +12,7 @@
   /* display: block; */
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 
@@ -26,8 +26,12 @@ body {
 
   font-family: "Poppins";
 
+  position: relative;
+
   background-color: var(--background-color);
   color: var(--text-color);
+
+  overflow: hidden;
 }
 
 button {
@@ -43,9 +47,65 @@ button {
 
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-  color: white
+  color: white;
 }
 
 button:hover {
   cursor: pointer;
+}
+
+/* TOAST NOTIFICATION */
+
+.toast_container {
+  position: absolute;
+
+  bottom: 2rem;
+  right: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  font-size: 1.5rem;
+
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: white;
+
+  animation: slideIn 0.5s, fadeIn 0.5s;
+}
+
+.succes {
+  background-color: var(--secondary-color);
+}
+
+.error {
+  background-color: var(--accent-color);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -7,18 +7,20 @@ const taskContainer = document.getElementById("task_container");
 const tasksName = Array.from(document.getElementsByClassName("task__name"));
 
 // EVENT
-addTaskButton.addEventListener("click", (e) => {
-  const newTask = createTaskElement();
-  taskContainer.appendChild(newTask);
+if (addTaskButton) {
+  addTaskButton.addEventListener("click", (e) => {
+    const newTask = createTaskElement();
+    taskContainer.appendChild(newTask);
 
-  // Set focus on the contenteditable label
-  const contentEditableLabel = newTask.querySelector(".task__name");
-  if (contentEditableLabel) {
-    contentEditableLabel.focus();
-  }
+    // Set focus on the contenteditable label
+    const contentEditableLabel = newTask.querySelector(".task__name");
+    if (contentEditableLabel) {
+      contentEditableLabel.focus();
+    }
 
-  handleTasksChange();
-});
+    handleTasksChange();
+  });
+}
 
 // FUNCTIONS
 
@@ -161,3 +163,20 @@ const deleteTask = async (taskId) => {
 };
 
 handleTasksChange();
+
+const handleToast = () => {
+  const toast = Array.from(document.getElementsByClassName("toast"));
+
+  if (!toast) {
+    return;
+  }
+
+  setTimeout(() => {
+    toast.map((toast) => {
+      toast.remove();
+      console.log(toast);
+    });
+  }, 5000);
+};
+
+handleToast();
