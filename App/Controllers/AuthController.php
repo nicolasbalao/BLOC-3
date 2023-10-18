@@ -120,9 +120,9 @@ class AuthController extends Controller
         $form = new FormBuilder;
         $form->startForm(["class" => "auth_form"])
             ->addLabelFor("email", "Email")
-            ->addInput("email", "email")
+            ->addInput("email", "email", ['required' => true])
             ->addLabelFor("password", "Password")
-            ->addInput("password", "password")
+            ->addInput("password", "password", ["required" => true])
             ->addButton($buttonTitle)
             ->endForm();
 
