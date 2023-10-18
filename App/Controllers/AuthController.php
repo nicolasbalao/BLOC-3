@@ -72,6 +72,7 @@ class AuthController extends Controller
     public function logout()
     {
         SessionHelper::destroy();
+        header("Location: /login");
     }
 
     public function register()
