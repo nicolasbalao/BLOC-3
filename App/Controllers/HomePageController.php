@@ -28,7 +28,7 @@ class HomePageController extends Controller
 
         $taskModel = new TaskModel;
 
-        $tasks = $taskModel->findAll();
+        $tasks = $taskModel->findBy(["userId" => $_SESSION["user"]["id"]]);
 
 
         $this->render("homePage", compact("title", "form", "tasks"));
@@ -69,6 +69,7 @@ class HomePageController extends Controller
         $task = new TaskModel;
 
         $task->setName($name);
+        $task->setUserId($_SESSION["user"]["id"]);
 
         $success = $task->create();
 
