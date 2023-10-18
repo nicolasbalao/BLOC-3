@@ -6,6 +6,7 @@ use App\Controllers\Controller;
 use App\Models\TaskModel;
 use App\Utils\FormBuilder;
 use App\Utils\SessionHelper;
+use SessionHandler;
 
 class HomePageController extends Controller
 {
@@ -15,6 +16,7 @@ class HomePageController extends Controller
     {
         // TODO: REFACTOR: search something like nest js UseGuard()
         if (!SessionHelper::isAuth()) {
+            SessionHelper::setError("Unauthorized");
             header("Location: /login");
         }
         $this->cssFile = "homePage";
